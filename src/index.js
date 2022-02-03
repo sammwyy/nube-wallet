@@ -6,11 +6,14 @@ import { ColorModeScript } from "@chakra-ui/react";
 
 import App from "./App";
 import theme from "./theme";
+import { WalletProvider } from "./context/wallet-context";
 
 ReactDOM.render(
-  <ChakraProvider theme={theme}>
-    <ColorModeScript initialColorMode={theme.config.initialColorMode} />
-    <App />
-  </ChakraProvider>,
+  <WalletProvider>
+    <ChakraProvider theme={theme}>
+      <ColorModeScript initialColorMode={theme.config.initialColorMode} />
+      <App />
+    </ChakraProvider>
+  </WalletProvider>,
   document.getElementById("root")
 );

@@ -13,6 +13,10 @@ export default class WalletManager {
     this.close();
   }
 
+  // Events to be fired.
+  onUpdateWallets() {}
+
+  // Functions.
   getNetwork(name) {
     for (const network of this.networks) {
       if (network.name?.toLowerCase() === name?.toLowerCase()) {
@@ -35,6 +39,7 @@ export default class WalletManager {
       network: wallet.info.network.toLowerCase(),
       key: wallet.getPrivateKey(),
     });
+    this.onUpdateWallets();
     this.save();
   }
 
@@ -71,6 +76,7 @@ export default class WalletManager {
     }
 
     this.wallets = readedWallets;
+    this.onUpdateWallets();
   }
 
   open(password) {
