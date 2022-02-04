@@ -36,8 +36,10 @@ export function hasData(file) {
   const ctx = getExecutionContext();
 
   if (ctx === EXECUTION_CONTEXT.DESKTOP) {
-    const path = require("path");
-    const fs = require("fs");
+    const electron = require("electron");
+    const path = electron.remote.require("path");
+    const fs = electron.remote.require("fs");
+    console.log(fs);
 
     const dir = path.join(getSystemAppdata(), ".nubewallet");
     if (!fs.existsSync(dir)) {
